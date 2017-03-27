@@ -1,38 +1,29 @@
-require 'pry-byebug'
-# @param {String} s
-# @param {Integer} num_rows
-# @return {String}
+
 def convert(s, num_rows)
-  return s if s.nil? || s.empty?
-  puts s
-  results = []
-  column_count = 0
-  s.length.times do |index|
-    column_position = index / num_rows
-    row_position = index % (num_rows + 1)
-
-    # row_position = num_rows / 2 if (index + 1) % (num_rows + 1) == 0
-
-
-    if (index + 1) % (num_rows + 1) == 0
-      num_rows.times do |row|
-        results[row] << if row == num_rows / 2
-                          puts "#{column_position} #{row} #{s[index]}"
-                          s[index]
-                        else
-                          puts "#{column_position} #{row} ' '"
-                          ' '
-                        end
+  sb = []
+  num_rows.times { |i| sb[i] = '' }
+  len = s.length
+  i = 0
+  while i < len
+    idx = 0
+    num_rows.times do |row|
+      unless s[i].nil?
+        sb[row] += s[i]
+        i+=1
       end
-    else
-      puts "#{column_position} #{row_position} #{s[index]}"
-      results[row_position] ||= ''
-      results[row_position] << s[index]
+    end
+    (num_rows - 2).downto(1).each do |row|
+      unless s[i].nil?
+        sb[row] += s[i]
+        i+=1
+      end
     end
   end
-  binding.pry
-  puts results.to_s
-  puts result2.strip
+  sb.join('')
 end
 
 convert('PAYPALISHIRING', 3)
+convert('PAYPALISHIRING', 5)
+convert('PAYPALISHIRING', 7)
+convert('ABC', 2)
+convert('ABCD', 2)
