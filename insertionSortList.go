@@ -1,7 +1,7 @@
 package LeetCode
 
-type ListNode struct{
-	Val int
+type ListNode struct {
+	Val  int
 	Next *ListNode
 }
 
@@ -13,7 +13,7 @@ func insertionSortList(head *ListNode) *ListNode {
 	{
 		cur := head
 		for ok := true; ok; ok = cur != nil {
-			sort(sorted, cur)
+			insertionSortListSort(sorted, cur)
 			cur = cur.Next
 
 		}
@@ -21,7 +21,7 @@ func insertionSortList(head *ListNode) *ListNode {
 	return sorted.Next
 }
 
-func sort(sorted, cur *ListNode) {
+func insertionSortListSort(sorted, cur *ListNode) {
 	prev := sorted
 	for ok := true; ok; ok = prev.Next != nil {
 		if prev.Next == nil {
@@ -45,4 +45,3 @@ func sort(sorted, cur *ListNode) {
 		Next: nil,
 	}
 }
-
