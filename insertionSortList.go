@@ -5,6 +5,16 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func (l *ListNode) ToString() []int {
+	var a []int
+	tmp := l
+	for tmp != nil {
+		a = append(a, tmp.Val)
+		tmp = tmp.Next
+	}
+	return a
+}
+
 func insertionSortList(head *ListNode) *ListNode {
 	if head == nil {
 		return head
